@@ -17,7 +17,6 @@ function startGame() {
 
 function loop(){
     layer.update();
-    layer.processControls();
     layer.draw();
 }
 

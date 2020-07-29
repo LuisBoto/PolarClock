@@ -4,9 +4,6 @@ var images = {
     backgroud : "res/background.png",
 };
 
-var blockRoute = "res/storyBlocks/block";
-var blockExtension = ".txt";
-
 var routeImages = Object.values(images);
 loadImages(0);
 
