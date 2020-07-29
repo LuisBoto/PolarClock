@@ -12,9 +12,4 @@ class Layer {
 
     }
 
-
-    processControls(){
-
-    }
-
 }
