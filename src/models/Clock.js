@@ -15,9 +15,13 @@ class Clock extends Model{
         var i, j, x, y, radians;
         for (i=this.offset; i<=this.currentTime*stepAngleDistance+this.offset; i++) {
             radians = this.degreesToRadians(i);
-            x = this.radius*Math.cos(radians);
-            y = this.radius*Math.sin(radians);
-            context.drawImage(this.image, x-this.width/2+1920*0.5, y-this.height/2+1080*0.5);
+            x = (this.radius*Math.cos(radians)) - this.width/2 + 1920*0.5;
+            y = (this.radius*Math.sin(radians)) - this.height/2 + 1080*0.5;
+            context.beginPath();
+            context.arc(x, y, 25, 0, 2 * Math.PI);
+            context.fillStyle = 'green';
+            context.fill();
+            //context.drawImage(this.image, x-this.width/2+1920*0.5, y-this.height/2+1080*0.5);
         }
     }
 
