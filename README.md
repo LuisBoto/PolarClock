@@ -1,2 +1,2 @@
-# polarClock
+# PolarClock
 Javascript polar clocks
