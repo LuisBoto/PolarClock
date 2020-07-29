@@ -6,12 +6,14 @@ class Clock extends Model{
 
         this.currentTime = currentTime; //How full the clock is at the moment
         this.steps = steps; //How many steps are in the clock (ex: 60 in a minute, 24 in a day etc)
+
+        this.offset = 270; //270º degree offset so that clock starts cycle at 00:00
     }
 
     draw() {
         var stepAngleDistance = 360/this.steps;
         var i, j, x, y, radians;
-        for (i=0; i<=this.currentTime*stepAngleDistance; i++) {
+        for (i=this.offset; i<=this.currentTime*stepAngleDistance+this.offset; i++) {
             radians = this.degreesToRadians(i);
             x = this.radius*Math.cos(radians);
             y = this.radius*Math.sin(radians);
