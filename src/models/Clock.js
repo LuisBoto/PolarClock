@@ -1,6 +1,6 @@
 class Clock extends Model{
 
-    constructor(spriteRoute, radius, currentTime, steps, stepTime) {
+    constructor(spriteRoute, radius, currentTime, steps) {
         super(spriteRoute, 0, 0);
         this.radius = radius;
 
@@ -11,11 +11,11 @@ class Clock extends Model{
     draw() {
         var stepAngleDistance = 360/this.steps;
         var i, j, x, y, radians;
-        for (i=0; i<this.currentTime*stepAngleDistance; i++) {
+        for (i=0; i<=this.currentTime*stepAngleDistance; i++) {
             radians = this.degreesToRadians(i);
             x = this.radius*Math.cos(radians);
-            y = this.radius*Math.sen(radians);
-            context.drawImage(this.image, x - this.width /2, y - this.height /2);
+            y = this.radius*Math.sin(radians);
+            context.drawImage(this.image, x-this.width/2+1920*0.5, y-this.height/2+1080*0.5);
         }
     }
 

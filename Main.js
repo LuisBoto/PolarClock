@@ -12,7 +12,7 @@ var gameLayer;
 function startGame() {
     gameLayer = new GameLayer();
     layer=gameLayer;
-    setInterval(loop, 1000 / 60);
+    setInterval(loop, 1000 / 30);
 }
 
 function loop(){
