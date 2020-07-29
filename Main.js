@@ -7,11 +7,11 @@ var minimumResize = 1;
 var controls = {};
 
 var layer;
-var gameLayer;
+var mainLayer;
 
 function startGame() {
-    gameLayer = new GameLayer();
-    layer=gameLayer;
+    mainLayer = new MainLayer();
+    layer=mainLayer;
     setInterval(loop, 1000 / 30);
 }
 
