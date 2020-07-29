@@ -2,6 +2,7 @@
 var cache = [];
 var images = {
     backgroud : "res/background.png",
+    sprite : "res/sprite.png",
 };
 
 var routeImages = Object.values(images);

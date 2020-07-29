@@ -9,9 +9,9 @@ class Model {
     }
 
     isOnScreen () {
-        if ( this.x  - this.width/2 <= 900 &&
+        if ( this.x  - this.width/2 <= 1920 &&
             (this.x)  + this.width/2 >= 0 &&
-            this.y - this.height/2 <= 600 &&
+            this.y - this.height/2 <= 1080 &&
             this.y + this.height/2 >= 0 ){
             return true;
         }
