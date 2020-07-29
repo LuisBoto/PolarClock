@@ -2,6 +2,8 @@
 var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 var minimumResize = 1;
+var canvasWidth = 1920;
+var canvasHeight = 1080;
 
 // Controls
 var controls = {};

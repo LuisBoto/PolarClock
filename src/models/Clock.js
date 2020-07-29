@@ -7,14 +7,14 @@ class Clock {
         this.currentTime = currentTime; //How full the clock is at the moment
         this.steps = steps; //How many steps are in the clock (ex: 60 in a minute, 24 in a day etc)
 
-        this.offset = this.degreesToRadians(270); //Offset so that clock starts cycle at 00:00
+        this.offset = this.degreesToRadians(270); //Offset so that clock starts its cycle at 00:00
     }
 
     draw() {
         var stepAngleDistance = 360/this.steps;
         var x, y;
-        x = 1920*0.5;
-        y = 1080*0.5;
+        x = canvasWidth*0.5;
+        y = canvasHeight*0.5;
         context.beginPath();
         context.arc(x, y, this.radius, this.offset, this.degreesToRadians(this.currentTime*stepAngleDistance)+this.offset);
         context.lineWidth = this.width;
