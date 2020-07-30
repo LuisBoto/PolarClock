@@ -19,17 +19,17 @@ class MainLayer extends Layer {
             this.hours*60*60+this.minutes*60+this.seconds, 24*60*60);
 
         this.daysClock = new Clock("Week",300, 70, '#990000',
-            this.dayOfWeek*24*60+this.hours*60+this.minutes, 7*24*60);
+            (this.dayOfWeek-1)*24*60+this.hours*60+this.minutes, 7*24*60);
 
         this.monthClock = new Clock("Month",375, 70, '#66ff99',
-            this.dayOfMonth*24*60+this.hours*60+this.minutes,this.daysInMonth(this.month, this.year)*24*60);
+            (this.dayOfMonth-1)*24*60+this.hours*60+this.minutes,this.daysInMonth(this.month, this.year)*24*60);
 
         var gradient = context.createLinearGradient(canvasWidth*0.25,canvasHeight*0.5,canvasWidth*0.75, canvasHeight*0.5);
         gradient.addColorStop("0.2", "magenta");
         gradient.addColorStop("0.5" ,"yellow");
         gradient.addColorStop("0.8" ,"cyan");
         this.yearClock = new Clock("Year", 425, 20, gradient,
-            this.currentDayOfYear*24+this.hours, this.dayOfTheYear(new Date("12/31/"+this.year))*24);
+            (this.currentDayOfYear-1)*24+this.hours, this.dayOfTheYear(new Date("12/31/"+this.year))*24);
     }
 
     update() {
@@ -43,15 +43,15 @@ class MainLayer extends Layer {
         this.hoursClock.setCurrentTime(this.hours*60*60+this.minutes*60+this.seconds);
         this.hoursClock.setLabel(this.hours+"h");
 
-        this.daysClock.setCurrentTime(this.dayOfWeek*24*60+this.hours*60+this.minutes);
+        this.daysClock.setCurrentTime((this.dayOfWeek-1)*24*60+this.hours*60+this.minutes);
         var dayName = this.date.toLocaleString('default', { weekday: 'long' });
         this.daysClock.setLabel(dayName.charAt(0).toUpperCase() + dayName.slice(1));
 
-        this.monthClock.setCurrentTime(this.dayOfMonth*24*60+this.hours*60+this.minutes);
+        this.monthClock.setCurrentTime((this.dayOfMonth-1)*24*60+this.hours*60+this.minutes);
         var monthName = this.date.toLocaleString('default', { month: 'long' });
         this.monthClock.setLabel(monthName.charAt(0).toUpperCase() + monthName.slice(1));
 
-        this.yearClock.setCurrentTime(this.currentDayOfYear*24+this.hours);
+        this.yearClock.setCurrentTime((this.currentDayOfYear-1)*24+this.hours);
         this.yearClock.setLabel(this.year);
     }
 
