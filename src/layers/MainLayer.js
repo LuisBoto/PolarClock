@@ -6,23 +6,32 @@ class MainLayer extends Layer {
     }
 
     initiate() {
-        var date = new Date();
+        this.updateDate();
         this.background = new Model(images.backgroud, 1920*0.5, 1080*0.5);
-        this.secondsClock = new Clock("Seconds", 75, 70, '#9900ff',  date.getSeconds()*1000+date.getMilliseconds(), 1000*60);
-        this.minutesClock = new Clock("Minutes",150, 70, '#ff5050', date.getMinutes()*60+date.getSeconds(), 60*60);
-        this.hoursClock = new Clock("Hours",225, 70, '#33ccff', date.getHours()*60+date.getMinutes(), 24*60);
-        this.daysClock = new Clock("Week",300, 70, '#990000', date.getDay()*24+date.getHours(), 7*24);
-        this.monthClock = new Clock("Month",375, 70, '#66ff99', date.getDate()*24+date.getHours(),
-            this.daysInMonth(date.getMonth(), date.getFullYear())*24);
+
+        this.secondsClock = new Clock("Seconds", 75, 70, '#9900ff',
+            this.seconds*1000+this.millis, 1000*60);
+
+        this.minutesClock = new Clock("Minutes",150, 70, '#ff5050',
+            this.minutes*60+this.seconds, 60*60);
+
+        this.hoursClock = new Clock("Hours",225, 70, '#33ccff',
+            this.hours*60*60+this.minutes*60+this.seconds, 24*60*60);
+
+        this.daysClock = new Clock("Week",300, 70, '#990000',
+            this.dayOfWeek*24*60+this.hours*60+this.minutes, 7*24*60);
+
+        this.monthClock = new Clock("Month",375, 70, '#66ff99',
+            this.dayOfMonth*24*60+this.hours*60+this.minutes,this.daysInMonth(this.month, this.year)*24*60);
     }
 
     update() {
-        var date = new Date();
-        this.secondsClock.setCurrentTime(date.getSeconds()*1000+date.getMilliseconds());
-        this.minutesClock.setCurrentTime(date.getMinutes()*60+date.getSeconds());
-        this.hoursClock.setCurrentTime(date.getHours()*60+date.getMinutes());
-        this.daysClock.setCurrentTime(date.getDay()*24+date.getHours());
-        this.monthClock.setCurrentTime(date.getDate()*24+date.getHours());
+        this.updateDate();
+        this.secondsClock.setCurrentTime(this.seconds*1000+this.millis);
+        this.minutesClock.setCurrentTime(this.minutes*60+this.seconds);
+        this.hoursClock.setCurrentTime(this.hours*60*60+this.minutes*60+this.seconds);
+        this.daysClock.setCurrentTime(this.dayOfWeek*24*60+this.hours*60+this.minutes);
+        this.monthClock.setCurrentTime(this.dayOfMonth*24*60+this.hours*60+this.minutes);
     }
 
     draw() {
@@ -32,6 +41,18 @@ class MainLayer extends Layer {
         this.hoursClock.draw();
         this.daysClock.draw();
         this.monthClock.draw();
+    }
+
+    updateDate() {
+        this.date = new Date();
+        this.millis = this.date.getMilliseconds();
+        this.seconds = this.date.getSeconds();
+        this.minutes = this.date.getMinutes();
+        this.hours = this.date.getHours();
+        this.dayOfWeek = this.date.getDay();
+        this.dayOfMonth = this.date.getDate();
+        this.month = this.date.getMonth();
+        this.year = this.date.getFullYear();
     }
 
     daysInMonth (month, year) {
