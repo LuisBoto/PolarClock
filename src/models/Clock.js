@@ -34,10 +34,6 @@ class Clock {
         context.textAlign = "center";
         context.save();
         context.translate(this.radius*Math.cos(currentAngle)+x, this.radius*Math.sin(currentAngle)+y);
-        //var rotation = currentAngle;//-this.degreesToRadians(90);
-        //if (rotation < (3*Math.PI)/2 && rotation > Math.PI/2)
-            //var rotation = currentAngle+this.degreesToRadians(90);
-        //context.rotate(rotation);
         context.strokeText(this.label, 0,0);
         context.fillText(this.label, 0,0);
         context.restore();
@@ -45,6 +41,10 @@ class Clock {
 
     setCurrentTime(currentTime) {
         this.currentTime = currentTime;
+    }
+
+    setLabel(newLabel) {
+        this.label = newLabel;
     }
 
     degreesToRadians(degrees)

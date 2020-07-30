@@ -28,10 +28,21 @@ class MainLayer extends Layer {
     update() {
         this.updateDate();
         this.secondsClock.setCurrentTime(this.seconds*1000+this.millis);
+        this.secondsClock.setLabel(this.seconds+"s");
+
         this.minutesClock.setCurrentTime(this.minutes*60+this.seconds);
+        this.minutesClock.setLabel(this.minutes+"m");
+
         this.hoursClock.setCurrentTime(this.hours*60*60+this.minutes*60+this.seconds);
+        this.hoursClock.setLabel(this.hours+"h");
+
         this.daysClock.setCurrentTime(this.dayOfWeek*24*60+this.hours*60+this.minutes);
+        var dayName = this.date.toLocaleString('default', { weekday: 'long' });
+        this.daysClock.setLabel(dayName.charAt(0).toUpperCase() + dayName.slice(1));
+
         this.monthClock.setCurrentTime(this.dayOfMonth*24*60+this.hours*60+this.minutes);
+        var monthName = this.date.toLocaleString('default', { month: 'long' });
+        this.monthClock.setLabel(monthName.charAt(0).toUpperCase() + monthName.slice(1));
     }
 
     draw() {
