@@ -23,6 +23,13 @@ class MainLayer extends Layer {
 
         this.monthClock = new Clock("Month",375, 70, '#66ff99',
             this.dayOfMonth*24*60+this.hours*60+this.minutes,this.daysInMonth(this.month, this.year)*24*60);
+
+        var gradient = context.createLinearGradient(canvasWidth*0.25,canvasHeight*0.5,canvasWidth*0.75, canvasHeight*0.5);
+        gradient.addColorStop("0.2", "magenta");
+        gradient.addColorStop("0.5" ,"yellow");
+        gradient.addColorStop("0.8" ,"cyan");
+        this.yearClock = new Clock("Year", 425, 20, gradient,
+            this.currentDayOfYear*24+this.hours, this.dayOfTheYear(new Date("12/31/"+this.year))*24);
     }
 
     update() {
@@ -43,6 +50,9 @@ class MainLayer extends Layer {
         this.monthClock.setCurrentTime(this.dayOfMonth*24*60+this.hours*60+this.minutes);
         var monthName = this.date.toLocaleString('default', { month: 'long' });
         this.monthClock.setLabel(monthName.charAt(0).toUpperCase() + monthName.slice(1));
+
+        this.yearClock.setCurrentTime(this.currentDayOfYear*24+this.hours);
+        this.yearClock.setLabel(this.year);
     }
 
     draw() {
@@ -52,6 +62,7 @@ class MainLayer extends Layer {
         this.hoursClock.draw();
         this.daysClock.draw();
         this.monthClock.draw();
+        this.yearClock.draw();
     }
 
     updateDate() {
@@ -64,9 +75,14 @@ class MainLayer extends Layer {
         this.dayOfMonth = this.date.getDate();
         this.month = this.date.getMonth();
         this.year = this.date.getFullYear();
+        this.currentDayOfYear = this.dayOfTheYear(this.date);
     }
 
     daysInMonth (month, year) {
         return new Date(year, month-1, 0).getDate();
+    }
+
+    dayOfTheYear(date) {
+        return Math.floor((date - new Date(date.getFullYear(), 0, 0)) / 1000 / 60 / 60 / 24);
     }
 }
