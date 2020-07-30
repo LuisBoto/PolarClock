@@ -13,7 +13,7 @@ class MainLayer extends Layer {
         this.hoursClock = new Clock("Hours",225, 70, '#33ccff', date.getHours()*60+date.getMinutes(), 24*60);
         this.daysClock = new Clock("Week",300, 70, '#990000', date.getDay()*24+date.getHours(), 7*24);
         this.monthClock = new Clock("Month",375, 70, '#66ff99', date.getDate()*24+date.getHours(),
-            this.daysInMonth(date.getMonth(), date.getFullYear())*24+date.getHours());
+            this.daysInMonth(date.getMonth(), date.getFullYear())*24);
     }
 
     update() {
@@ -35,6 +35,6 @@ class MainLayer extends Layer {
     }
 
     daysInMonth (month, year) {
-        return new Date(year, month, 0).getDate();
+        return new Date(year, month-1, 0).getDate();
     }
 }
