@@ -73,13 +73,25 @@ class MainLayer extends Layer {
         this.hours = this.date.getHours();
         this.dayOfWeek = this.date.getDay();
         this.dayOfMonth = this.date.getDate();
-        this.month = this.date.getMonth();
+        this.month = this.date.getMonth()+1;
         this.year = this.date.getFullYear();
         this.currentDayOfYear = this.dayOfTheYear(this.date);
     }
 
     daysInMonth (month, year) {
-        return new Date(year, month-1, 0).getDate();
+        var days31 = [1,3,5,7,8,10,12];
+        var days30 = [4,6,9,11];
+
+        if (days30.indexOf(month)!=-1)
+            return 30;
+        if (days31.indexOf(month)!=-1)
+            return 31;
+
+        if (month==2) {
+            if (year%4==0)
+                return 29;
+            return 28;
+        }
     }
 
     dayOfTheYear(date) {
