@@ -3,6 +3,7 @@ class MainLayer extends Layer {
     constructor() {
         super();
         this.initiate();
+        this.monthChange = false;
     }
 
     initiate() {
@@ -49,7 +50,11 @@ class MainLayer extends Layer {
 
         this.monthClock.setCurrentTime((this.dayOfMonth-1)*24*60+this.hours*60+this.minutes);
         var monthName = this.date.toLocaleString('default', { month: 'long' });
-        this.monthClock.setLabel(monthName.charAt(0).toUpperCase() + monthName.slice(1));
+        this.monthClock.setLabel(monthName.charAt(0).toUpperCase() + monthName.slice(1)+" "+this.dayOfMonth);
+        if (this.monthChange) { //Month clock needs to readjust its number of days
+            this.monthClock.setSteps(this.daysInMonth(this.month, this.year)*24*60);
+            this.monthChange = false;
+        }
 
         this.yearClock.setCurrentTime((this.currentDayOfYear-1)*24+this.hours);
         this.yearClock.setLabel(this.year);
@@ -73,6 +78,8 @@ class MainLayer extends Layer {
         this.hours = this.date.getHours();
         this.dayOfWeek = this.date.getDay();
         this.dayOfMonth = this.date.getDate();
+        if (this.month!=this.date.getMonth()+1)
+            this.monthChange = true;
         this.month = this.date.getMonth()+1;
         this.year = this.date.getFullYear();
         this.currentDayOfYear = this.dayOfTheYear(this.date);
@@ -88,8 +95,9 @@ class MainLayer extends Layer {
             return 31;
 
         if (month==2) {
-            if (year%4==0)
+            if (year%4==0 || (year%100==0 && year%400==0)) {
                 return 29;
+            }
             return 28;
         }
     }

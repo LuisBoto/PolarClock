@@ -43,6 +43,10 @@ class Clock {
         this.currentTime = currentTime;
     }
 
+    setSteps(newSteps) {
+        this.steps = newSteps;
+    }
+
     setLabel(newLabel) {
         this.label = newLabel;
     }
