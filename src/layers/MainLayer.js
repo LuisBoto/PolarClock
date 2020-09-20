@@ -66,8 +66,8 @@ class MainLayer extends Layer {
         this.minutesClock.draw();
         this.hoursClock.draw();
         this.daysClock.draw();
-        this.monthClock.draw();
         this.yearClock.draw();
+        this.monthClock.draw();
     }
 
     updateDate() {
