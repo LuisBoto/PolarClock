@@ -29,7 +29,7 @@ class MainLayer extends Layer {
         gradient.addColorStop("0.2", "magenta");
         gradient.addColorStop("0.5" ,"yellow");
         gradient.addColorStop("0.8" ,"cyan");
-        this.yearClock = new Clock("Year", 425, 20, gradient,
+        this.yearClock = new Clock("Year", 450, 20, gradient,
             (this.currentDayOfYear-1)*24+this.hours, this.dayOfTheYear(new Date("12/31/"+this.year))*24);
     }
 
