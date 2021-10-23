@@ -8,7 +8,7 @@ class MainLayer extends Layer {
 
     initiate() {
         this.updateDate();
-        this.background = new Model(images.backgroud, 1920*0.5, 1080*0.5);
+        this.background = new Model(images.background, 1920*0.5, 1080*0.5);
 
         this.secondsClock = new Clock("Seconds", 75, 70, '#9900ff',
             this.seconds*1000+this.millis, 1000*60);

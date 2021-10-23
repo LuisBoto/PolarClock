@@ -1,7 +1,7 @@
-// Lista re recursos a precargar
+// Resources to pre-load list
 var cache = [];
 var images = {
-    backgroud : "res/background.png",
+    background : "res/background.png",
 };
 
 var routeImages = Object.values(images);
