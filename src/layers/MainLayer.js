@@ -25,10 +25,10 @@ class MainLayer extends Layer {
         this.monthClock = new Clock("Month",375, 70, '#66ff99',
             (this.dayOfMonth-1)*24*60+this.hours*60+this.minutes,this.daysInMonth(this.month, this.year)*24*60);
 
-        var gradient = context.createLinearGradient(canvasWidth*0.25,canvasHeight*0.5,canvasWidth*0.75, canvasHeight*0.5);
-        gradient.addColorStop("0.2", "magenta");
-        gradient.addColorStop("0.5" ,"yellow");
-        gradient.addColorStop("0.8" ,"cyan");
+        let gradient = context.createLinearGradient(canvasWidth*0.25,canvasHeight*0.5,canvasWidth*0.75, canvasHeight*0.5);
+        gradient.addColorStop(0.2, "magenta");
+        gradient.addColorStop(0.5 ,"yellow");
+        gradient.addColorStop(0.8 ,"cyan");
         this.yearClock = new Clock("Year", 450, 20, gradient,
             (this.currentDayOfYear-1)*24+this.hours, this.dayOfTheYear(new Date("12/31/"+this.year))*24);
     }
@@ -45,11 +45,11 @@ class MainLayer extends Layer {
         this.hoursClock.setLabel(this.hours+"h");
 
         this.daysClock.setCurrentTime((this.dayOfWeek-1)*24*60+this.hours*60+this.minutes);
-        var dayName = this.date.toLocaleString('default', { weekday: 'long' });
+        let dayName = this.date.toLocaleString('default', { weekday: 'long' });
         this.daysClock.setLabel(dayName.charAt(0).toUpperCase() + dayName.slice(1));
 
         this.monthClock.setCurrentTime((this.dayOfMonth-1)*24*60+this.hours*60+this.minutes);
-        var monthName = this.date.toLocaleString('default', { month: 'long' });
+        let monthName = this.date.toLocaleString('default', { month: 'long' });
         this.monthClock.setLabel(monthName.charAt(0).toUpperCase() + monthName.slice(1)+" "+this.dayOfMonth);
         if (this.monthChange) { //Month clock needs to readjust its number of days
             this.monthClock.setSteps(this.daysInMonth(this.month, this.year)*24*60);
@@ -78,7 +78,7 @@ class MainLayer extends Layer {
         this.hours = this.date.getHours();
         this.dayOfWeek = this.date.getDay();
         this.dayOfMonth = this.date.getDate();
-        if (this.month!=this.date.getMonth()+1)
+        if (this.month !== this.date.getMonth()+1)
             this.monthChange = true;
         this.month = this.date.getMonth()+1;
         this.year = this.date.getFullYear();
@@ -86,16 +86,16 @@ class MainLayer extends Layer {
     }
 
     daysInMonth (month, year) {
-        var days31 = [1,3,5,7,8,10,12];
-        var days30 = [4,6,9,11];
+        let days31 = [1,3,5,7,8,10,12];
+        let days30 = [4,6,9,11];
 
-        if (days30.indexOf(month)!=-1)
+        if (days30.indexOf(month)!==-1)
             return 30;
-        if (days31.indexOf(month)!=-1)
+        if (days31.indexOf(month)!==-1)
             return 31;
 
-        if (month==2) {
-            if (year%4==0 || (year%100==0 && year%400==0)) {
+        if (month===2) {
+            if (year%4===0 || (year%100===0 && year%400===0)) {
                 return 29;
             }
             return 28;

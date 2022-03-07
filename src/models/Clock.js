@@ -11,13 +11,9 @@ class Clock {
         this.offset = this.degreesToRadians(270); //Offset so that clock starts its cycle at 00:00
     }
 
-    setOffset(offset) {
-        this.offset = this.degreesToRadias(offset);
-    }
-
     draw() {
-        var stepAngleDistance = 360/this.steps;
-        var x, y, currentAngle;
+        let stepAngleDistance = 360/this.steps;
+        let x, y, currentAngle;
         x = canvasWidth*0.5;
         y = canvasHeight*0.5;
         currentAngle = this.degreesToRadians(this.currentTime*stepAngleDistance)+this.offset;
@@ -53,7 +49,7 @@ class Clock {
 
     degreesToRadians(degrees)
     {
-        var pi = Math.PI;
+        let pi = Math.PI;
         return degrees * (pi/180);
     }
 

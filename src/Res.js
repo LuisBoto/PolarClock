@@ -1,10 +1,10 @@
 // Resources to pre-load list
-var cache = [];
-var images = {
+let cache = [];
+let images = {
     background : "res/background.png",
 };
 
-var routeImages = Object.values(images);
+let routeImages = Object.values(images);
 loadImages(0);
 
 function loadImages(index){

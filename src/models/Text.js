@@ -4,10 +4,7 @@ class Text {
         this.value = value;
         this.x = x;
         this.y = y;
-        this.center = false;
-        if (x==1920*0.5) {
-            this.center = true;
-        }
+        this.center = (x === 1920 * 0.5);
     }
 
     setValue(value) {
