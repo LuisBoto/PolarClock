@@ -26,6 +26,7 @@ class Clock {
         context.font = "19px Georgia";
         context.fillStyle = "black";
         context.lineWidth = 8;
+        context.miterLimit = 2;
         context.strokeStyle = "#ffff99";
         context.textAlign = "center";
         context.save();
